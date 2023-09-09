@@ -1,0 +1,98 @@
+\documentclass[en]{snu-ece-bsc-thesis}
+
+
+% Add your packages here
+% \usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{lipsum}
+
+\addbibresource{bib.bib}
+
+\title{SNU ECE BSc Thesis Template}
+\author{이재호}
+\advisor{홍길동}
+\date{2023년 9월}
+
+\koreankeywords{서울대학교, 공과대학, 학사학위논문, 템플릿}
+\englishkeywords{Seoul National University, College of Engineering, Bachelor's Thesis, Template}
+
+
+\begin{document}
+\maketitle
+
+\pagenumbering{roman}
+\begin{abstract}
+  \lipsum[1]
+\end{abstract}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\chapter{Introduction}\label{chap:introduction}
+\pagenumbering{arabic}
+This template is structured as follows.
+Section~\ref{sec:figure} of chapter~\ref{chap:body} shows an example of a figure.
+Section~\ref{sec:table} of chapter~\ref{chap:body} shows an example of a table.
+Chapter~\ref{chap:conclusion} concludes this template.
+
+\lipsum[2-3]
+
+
+\chapter{Body}\label{chap:body}
+Entropy of information is the expected value of information contained in each message, and is given by equation~\eqref{eq:entropy}~\cite{6773024}.
+\begin{equation}\label{eq:entropy}
+  H(X) = -\sum_{i=1}^n {\mathrm{P}(x_i) \log_b \mathrm{P}(x_i)}
+\end{equation}
+
+\lipsum[4-6]
+
+
+\section{Figure}\label{sec:figure}
+Example of a figure is shown in figure~\ref{fig:example}.
+Figure~\ref{fig:snu} is the logo of Seoul National University and figure~\ref{fig:eng} is the logo of College of Engineering.
+
+\begin{figure}[htp]
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.5\textwidth]{logo1.pdf}
+    \caption{The logo of Seoul National University}\label{fig:snu}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{logo2.pdf}
+    \caption{The logo of College of Engineering}\label{fig:eng}
+  \end{subfigure}
+  \caption[Figure example (ToC)]{An example of a figure.}\label{fig:example}
+\end{figure}
+
+\lipsum[7-8]
+
+
+\section{Table}\label{sec:table}
+Example of a table is shown in table~\ref{tab:example}.
+
+\begin{table}[htp]
+  \centering
+  \caption[Table example (ToC)]{An example of a table.}\label{tab:example}
+  \begin{tblr}{cc}
+    \toprule
+    Constant & Value \\\midrule
+    $c$ & \SI{299792458}{\meter\per\second} \\
+    $h$ & \SI{6.62607015e-34}{\joule\per\hertz} \\\bottomrule
+  \end{tblr}
+\end{table}
+
+\lipsum[9-10]
+
+
+\chapter{Conclusion}\label{chap:conclusion}
+\lipsum[11]
+
+\printbibliography
+
+\begin{abstract}[ko]
+  벌레는 마리아 언덕 둘 아직 까닭입니다. 걱정도 어머니 헤일 오는 가슴속에 헤는 아스라히 않은 내 계십니다. 비둘기, 노새, 것은 같이 거외다. 이런 비둘기, 아스라히 쉬이 릴케 라이너 이름을 슬퍼하는 너무나 까닭입니다. 자랑처럼 새워 무엇인지 다하지 차 같이 토끼, 있습니다. 흙으로 묻힌 덮어 버리었습니다. 내린 어머니 남은 이름자를 까닭입니다. 쓸쓸함과 소학교 소녀들의 이웃 이름을 오면 남은 헤일 지나고 봅니다. 이름을 까닭이요, 위에도 버리었습니다. 소녀들의 이네들은 무엇인지 다하지 봅니다. 릴케 언덕 청춘이 가난한 멀리 않은 나는 강아지, 까닭입니다.
+\end{abstract}
+\end{document}

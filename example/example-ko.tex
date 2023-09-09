@@ -1,0 +1,96 @@
+\documentclass[ko]{snu-ece-bsc-thesis}
+
+% Add your packages here
+% \usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{jiwonlipsum}
+
+\addbibresource{bib.bib}
+
+\title{서울대학교 공과대학 학사학위논문 템플릿}
+\author{이재호}
+\advisor{홍길동}
+\date{2023년 9월}
+
+\koreankeywords{서울대학교, 공과대학, 학사학위논문, 템플릿}
+\englishkeywords{Seoul National University, College of Engineering, Bachelor's Thesis, Template}
+
+
+\begin{document}
+\maketitle
+
+\pagenumbering{roman}
+\begin{abstract}
+  \jiwon[1]
+\end{abstract}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\chapter{서론}\label{chap:introduction}
+\pagenumbering{arabic}
+본 템플릿의 구성은 다음과 같다.
+\ref{chap:body}장 본론의 \ref{sec:picture}절에서 그림의 예시를 보여준다.
+\ref{sec:table}절에서 표의 예시를 보여준다.
+\ref{chap:conclusion}장에서는 본 템플릿을 요약한다.
+
+\jiwon[2-3]
+
+
+\chapter{본론}\label{chap:body}
+정보 엔트로피는 각 메시지에 포함된 정보의 기댓값으로 식~\eqref{eq:entropy}\와 같다~\cite{6773024}.
+\begin{equation}\label{eq:entropy}
+  H(X) = -\sum_{i=1}^n {\mathrm{P}(x_i) \log_b \mathrm{P}(x_i)}
+\end{equation}
+
+\jiwon[4-6]
+
+
+\section{그림}\label{sec:picture}
+그림 예시는 그림~\ref{fig:example}\와 같다. 그림~\ref{fig:snu}\은 서울대학교 로고이고 그림~\ref{fig:eng}\는 서울대학교 공과대학 로고이다.
+
+\begin{figure}[htp]
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.5\textwidth]{logo1.pdf}
+    \bicaption{서울대학교 로고}{The logo of Seoul National University}\label{fig:snu}
+  \end{subfigure}%
+  \begin{subfigure}[b]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{logo2.pdf}
+    \bicaption{공과대학 로고}{The logo of College of Engineering}\label{fig:eng}
+  \end{subfigure}
+  \bicaption[그림 예시 (목차 항목)]{그림 예시.}{An example of a figure.}\label{fig:example}
+\end{figure}
+
+\jiwon[7-8]
+
+
+\section{표}\label{sec:table}
+표 예시는 표~\ref{tab:example}\과 같다.
+
+\begin{table}[htp]
+  \centering
+  \bicaption[표 예시 (목차 항목)]{표 예시.}{An example of a table.}\label{tab:example}
+  \begin{tblr}{cc}
+    \toprule
+    상수 & 값 \\\midrule
+    $c$ & \SI{299792458}{\meter\per\second} \\
+    $h$ & \SI{6.62607015e-34}{\joule\per\hertz} \\\bottomrule
+  \end{tblr}
+\end{table}
+
+\jiwon[9-10]
+
+
+\chapter{결론}\label{chap:conclusion}
+\jiwon[11]
+
+\printbibliography
+
+\begin{abstract}[en]
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada sit amet lacus eu ultricies. Fusce tempus, sem quis rhoncus efficitur, nisl erat tempus ligula, sit amet vulputate velit ante eu orci. Cras sodales lorem ac nisl fringilla rhoncus. Maecenas facilisis elit non venenatis eleifend. Nullam congue ligula molestie odio commodo, a vestibulum nibh lobortis. Vivamus id dignissim augue, non sagittis tortor. Donec id fermentum nibh. Suspendisse tortor nisl, cursus tincidunt urna eget, ornare venenatis sem. Aliquam iaculis rutrum tortor.
+\end{abstract}
+\end{document}
