@@ -6,6 +6,8 @@ snu-ece-bsc-thesis 클래스는 서울대학교 전기정보공학부 학사학�
 
 ## 사용법
 
+XeLaTeX 혹은 LuaLaTeX 엔진을 사용해야 합니다.
+
 [example-ko.tex](example/example-ko.tex) 파일과 [example-en.tex](example/example-en.tex) 파일을 참고하세요.
 
 ## 저자

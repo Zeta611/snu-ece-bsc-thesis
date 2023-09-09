@@ -28,6 +28,17 @@
 \ProcessKeyOptions
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% XeLaTeX or LuaLaTeX required %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{iftex}
+\ifXeTeX\else\ifLuaTeX\else
+  \ClassError {snu-ece-bsc-thesis}
+    { This~class~only~supports~XeLaTeX~and~LuaLaTeX. }
+    { Please~use~either~XeLaTeX~or~LuaLaTeX. }
+\fi\fi
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Language-specific settings %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +103,7 @@
 
 % Math
 \RequirePackage{amssymb,amsmath,mathtools} % Before unicode-math
-\RequirePackage[math-style=TeX,bold-style=TeX]{unicode-math}
+% \RequirePackage[math-style=TeX,bold-style=TeX]{unicode-math}
 
 % Bibliography
 \RequirePackage[style=ieee]{biblatex}
