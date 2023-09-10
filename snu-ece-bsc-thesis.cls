@@ -56,9 +56,13 @@
     \LoadClass[11pt, a4paper]{report}
     \RequirePackage{kotex}
 
+
+    \RequirePackage[doublespacing]{setspace}
     \RequirePackage{caption}
-    \captionsetup[table]{font={stretch=1.3}}
-    \captionsetup[figure]{font={stretch=1.3}}
+    % If the setspace is used in conjuction with the caption package, the caption
+    % will be typeset with single spacing as default.
+    \captionsetup[table]{font=onehalfspacing}
+    \captionsetup[figure]{font=onehalfspacing}
 
     \RenewDocumentCommand \abstractname {}
       { \l_snu_ece_bsc_thesis_abstractname_en }
@@ -73,7 +77,12 @@
     \LoadClass[10pt, a4paper]{report}
     \RequirePackage[hangul]{kotex}
 
-    \RequirePackage[list=off, bi-separator=smallskip]{bicaption}
+    \RequirePackage[doublespacing]{setspace}
+    \RequirePackage[
+      list=off,
+      bi-separator=smallskip,
+      font=onehalfspacing
+    ]{bicaption}
     \bicaptionsetup[table]{name=표}{name=Table}
     \bicaptionsetup[figure]{name=그림}{name=Figure}
 
@@ -123,7 +132,6 @@
 \setlength{\textwidth}{160mm}
 \setlength{\textheight}{227mm}
 \setlength{\footskip}{20mm}
-\linespread{1.6} % double spacing
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,17 +224,9 @@
 % Redefine \baselinestretch for ToCs
 \let\@starttoc@orig\@starttoc
 \def\@starttoc#1{
-  \begingroup
-  \linespread{1.3}\selectfont
-  \@starttoc@orig{#1}
-  \endgroup
-}
-
-\AddToHook {env/figure/begin} {
-  \linespread{1.3}\selectfont
-}
-\AddToHook {env/table/begin} {
-  \linespread{1.3}\selectfont
+  \begin{onehalfspace}
+    \@starttoc@orig{#1}
+  \end{onehalfspace}
 }
 
 \RenewDocumentEnvironment { abstract } { o }
