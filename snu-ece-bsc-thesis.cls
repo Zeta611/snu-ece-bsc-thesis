@@ -64,14 +64,10 @@
     \captionsetup[table]{font=onehalfspacing}
     \captionsetup[figure]{font=onehalfspacing}
 
-    \RenewDocumentCommand \abstractname {}
-      { \l_snu_ece_bsc_thesis_abstractname_en }
-    \RenewDocumentCommand \contentsname {}
-      { \l_snu_ece_bsc_thesis_contentsname_en }
-    \RenewDocumentCommand \listtablename {}
-      { \l_snu_ece_bsc_thesis_listtablename_en }
-    \RenewDocumentCommand \listfigurename {}
-      { \l_snu_ece_bsc_thesis_listfigurename_en }
+    \let\abstractname\l_snu_ece_bsc_thesis_abstractname_en
+    \let\contentsname\l_snu_ece_bsc_thesis_contentsname_en
+    \let\listtablename\l_snu_ece_bsc_thesis_listtablename_en
+    \let\listfigurename\l_snu_ece_bsc_thesis_listfigurename_en
   }
   { % Korean main
     \LoadClass[10pt, a4paper]{report}
@@ -86,14 +82,10 @@
     \bicaptionsetup[table]{name=표}{name=Table}
     \bicaptionsetup[figure]{name=그림}{name=Figure}
 
-    \RenewDocumentCommand \abstractname {}
-      { \l_snu_ece_bsc_thesis_abstractname_ko }
-    \RenewDocumentCommand \contentsname {}
-      { \l_snu_ece_bsc_thesis_contentsname_ko }
-    \RenewDocumentCommand \listtablename {}
-      { \l_snu_ece_bsc_thesis_listtablename_ko }
-    \RenewDocumentCommand \listfigurename {}
-      { \l_snu_ece_bsc_thesis_listfigurename_ko }
+    \let\abstractname\l_snu_ece_bsc_thesis_abstractname_ko
+    \let\contentsname\l_snu_ece_bsc_thesis_contentsname_ko
+    \let\listtablename\l_snu_ece_bsc_thesis_listtablename_ko
+    \let\listfigurename\l_snu_ece_bsc_thesis_listfigurename_ko
   }
 
 
@@ -113,6 +105,8 @@
 % Math
 \RequirePackage{amssymb,amsmath,mathtools} % Before unicode-math
 % \RequirePackage[math-style=TeX,bold-style=TeX]{unicode-math}
+
+\RequirePackage{xcolor}
 
 % Bibliography
 \RequirePackage[style=ieee]{biblatex}
@@ -146,6 +140,8 @@
 
 \NewDocumentCommand \advisor { m }
   { \newcommand*\@advisor{#1} }
+\NewDocumentCommand \approvaldate { m }
+  { \newcommand*\@approvaldate{#1} }
 \NewDocumentCommand \koreankeywords { m }
   {
     \clist_set:Nn \l_snu_ece_bsc_thesis_keywords_ko_clist { #1 }
@@ -157,15 +153,19 @@
 
 % https://github.com/latex3/hyperref/issues/242#issuecomment-1149845979
 \AddToHook {begindocument/before} {
-  \usepackage[
-    pdfauthor = \@author,
-    pdftitle = \@title,
+  \hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={red!73!black},
+    urlcolor={blue!60!black},
+
+    pdflang = { \bool_if:NTF \l_snu_ece_bsc_thesis_en_bool { en } { ko } },
     pdfsubject = {공학~학사~학위논문},
     pdfkeywords = {
       \clist_use:Nnnn \l_snu_ece_bsc_thesis_keywords_en_clist { , } { , } { , },
       \clist_use:Nnnn \l_snu_ece_bsc_thesis_keywords_ko_clist { , } { , } { , }
     },
-  ]{hyperref}
+  }
 }
 
 % Redefine \maketitle
@@ -213,9 +213,10 @@
       \vspace{1cm}
       \@author 의~학사~학위~논문을~인준함. \\
       \vspace{1cm}
-      20\hphantom{23}년~\hphantom{09}월~\hphantom{08}일 \\
+      \@approvaldate \\
       \vspace{1cm}
-      지도교수 \hspace{6cm}(인)
+      지도교수 \hspace{1.5cm} \tl_map_inline:Nn { \@advisor } { ##1~ }
+\hspace{1.5cm} (인)
     \end{center}
     \newpage
   }
@@ -229,6 +230,9 @@
   \end{onehalfspace}
 }
 
+\cs_generate_variant:Nn \text_purify:n {V}
+\cs_generate_variant:Nn \text_purify:n {e}
+
 \RenewDocumentEnvironment { abstract } { o }
   {
     \IfValueTF { #1 }
@@ -237,14 +241,14 @@
           { % Korean abstract
             \chapter*{\l_snu_ece_bsc_thesis_abstractname_ko}
             \addcontentsline{toc}{chapter}
-              {\text_purify:n\l_snu_ece_bsc_thesis_abstractname_ko}
+              {\text_purify:V\l_snu_ece_bsc_thesis_abstractname_ko}
           }
           {
             \tl_if_eq:nnTF { #1 } { en }
               { % English abstract
                 \chapter*{\l_snu_ece_bsc_thesis_abstractname_en}
                 \addcontentsline{toc}{chapter}
-                  {\text_purify:n\l_snu_ece_bsc_thesis_abstractname_en}
+                  {\text_purify:V\l_snu_ece_bsc_thesis_abstractname_en}
               }
               { % Unrecognized language
                 \ClassError { snu-ece-bsc-thesis }
@@ -252,13 +256,13 @@
                   { Please~use~either~`ko'~or~`en' }
 
                 \chapter*{\abstractname}
-                \addcontentsline{toc}{chapter}{\text_purify:n\abstractname}
+                \addcontentsline{toc}{chapter}{\abstractname}
               }
           }
       }
       { % No language specified
         \chapter*{\abstractname}
-        \addcontentsline{toc}{chapter}{\text_purify:n\abstractname}
+        \addcontentsline{toc}{chapter}{\abstractname}
       }
   }
   {
